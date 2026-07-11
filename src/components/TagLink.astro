@@ -1,0 +1,9 @@
+---
+const { tag } = Astro.props
+---
+<a class="tag" href={`/tags/${tag}`}>{tag}</a>
+<style>
+.tag {
+	padding: .1em 0.5em;
+}
+</style>

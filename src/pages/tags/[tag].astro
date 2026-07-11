@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/Layout.astro';
+
+export const getStaticPaths = (async () => {
+  const allPosts = await getCollection("blog");
+  const allTags = allPosts.map((post: any) => post.data.tags).flat().filter(x => x);
+  const allUniqueTags = [...new Set(allTags)];
+  const mappedTags = allUniqueTags.map((tag) => ({
+    params: { tag },
+    props: { posts: allPosts.filter((y: any) => y.data.tags?.includes(tag)) },
+  }));
+  return mappedTags;
+}) satisfies GetStaticPaths;
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+const filteredPosts = posts.filter((post: any) => post.data.tags?.includes(tag));
+const title = `Tag: ${tag}`;
+---
+<BaseLayout pageTitle={title}>
+  <p>Posts tagged with {tag}</p>
+  <ul>
+    {filteredPosts.map((post: any) => <li><a href={`/${post.id}/`}>{post.data.title}</a></li>)}
+  </ul>
+</BaseLayout>

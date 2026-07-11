@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Post from '../components/Post.astro';
+import Layout from '../layouts/Layout.astro';
+
+const allPosts = (await getCollection("blog"))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+---
+<Layout pageTitle="Home">
+	<main>
+		{allPosts.map((post: any, index: number) =>
+			<Post date={post.data.pubDate} description={post.data.description} isFirst={index === 0} tags={post.data.tags} title={post.data.title} url={`/${post.id}/`} />)}
+	</main>
+</Layout>

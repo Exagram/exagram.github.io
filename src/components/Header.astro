@@ -1,0 +1,18 @@
+---
+import Menu from "./Menu.astro";
+import Navigation from "./Navigation.astro";
+---
+<header>
+  <nav>
+    <h1 class="site-title"><a href={Astro.url.pathname}>Exagram</a></h1>
+    <Menu />
+    <Navigation />
+  </nav>
+</header>
+<style>
+  a, a:active, a:focus, a:visited {
+    color: var(--secondary1);
+    display: inline-block;
+    text-decoration: none;
+  }
+</style>

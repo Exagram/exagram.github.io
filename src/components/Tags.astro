@@ -1,0 +1,20 @@
+---
+import TagLink from "./TagLink.astro"
+const { tags } = Astro.props
+---
+<div class="tags">
+	{tags && (
+		<>{tags.map((tag: string) => (
+			<TagLink tag={tag} />
+		))}</>
+	)}
+  {!tags && (
+    <p>No tags for this post.</p>
+  )}
+</div>
+<style>
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+}
+</style>

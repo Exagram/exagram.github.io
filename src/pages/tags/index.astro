@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import TagLink from '../../components/TagLink.astro';
+import BaseLayout from '../../layouts/Layout.astro';
+const allPosts = await getCollection("blog");
+const uniqueTags = [...new Set(allPosts.map((post: any) => post.data.tags).flat())].filter(x => x);
+const tags = uniqueTags.map(x => ({
+  count: allPosts.filter((post: any) => post.data.tags?.includes(x)).length,
+  percent: allPosts.length ? allPosts.filter((post: any) => post.data.tags?.includes(x)).length / allPosts.length : 0,
+  slug: x,
+}))
+.sort((a, b) => b.count - a.count);
+---
+<BaseLayout pageTitle="All Tags">
+  <div class="tags">
+    {tags.map((tag) => (
+      <p class="tag" style={{
+        "font-size": `calc(12pt + (1pt * ${tag.percent}))`,
+        "font-weight": `calc(100 + (900 * ${tag.percent}))`
+      }}><TagLink tag={tag.slug} />({tag.count})</p>
+    ))}
+  </div>
+</BaseLayout>

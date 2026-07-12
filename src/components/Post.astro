@@ -14,13 +14,13 @@ const { date, description, isFirst, tags, title, url } = Astro.props
 <style>
 	.post {
 		display: flex;
-		flex-direction: row;
-		gap: 20px;
+		flex-direction: column;
+		gap: 0;
+		align-items: baseline;
 	}
 	.date {
 		flex-shrink: 0;
-		font-size: 1.5rem;
-		line-height: 1.6;
+		font-size: 1.0rem;
 		color: #6c757d;
 	}
 	.post, h2 {
@@ -33,5 +33,11 @@ const { date, description, isFirst, tags, title, url } = Astro.props
 	}
 	.post:not(.is-first) {
 		margin-top: 20px;
+	}
+	@media screen and (min-width: 636px) {
+		.post {
+			flex-direction: row;
+			gap: 20px;
+		}
 	}
 </style>

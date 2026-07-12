@@ -1,18 +1,18 @@
 ---
-const publicSite = "exagram.github.io";
 ---
 <footer>
-  <p>&copy; {new Date().getFullYear()} <a href={`https://${publicSite}`}>{publicSite}</a> All rights reserved.</p>
+  <p>&copy; {new Date().getFullYear()} <a href="/" class="site-title">Exagram</a> All rights reserved.</p>
 </footer>
 <style>
-  a {
-    padding: 0.5rem 1rem;
-    color: white;
-    background-color: #4c1d95;
-    text-decoration: none;
-  }
-
-  a:hover {
-    background-color: #6b21a8;
+  .site-title {
+    color: var(--primary1);
+    display: inline-block;
+    font-family: var(--font-fira-code);
+    font-weight: bold;
+    text-shadow:
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
   }
 </style>

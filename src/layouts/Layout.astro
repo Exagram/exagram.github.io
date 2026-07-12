@@ -1,8 +1,8 @@
 ---
 import { Font } from "astro:assets";
-import Footer from "../components/Footer.astro";
 import 'normalize.css';
 import '../styles/global.css';
+import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
 const { pageTitle } = Astro.props
@@ -31,3 +31,13 @@ const { pageTitle } = Astro.props
 		</script>
 	</body>
 </html>
+<style>
+	h1 {
+		text-align: left;
+	}
+@media screen and (min-width: 636px) {
+	h1 {
+		text-align: center;
+	}
+}
+</style>
